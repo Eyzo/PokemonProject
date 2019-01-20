@@ -1,0 +1,28 @@
+<div class="row">
+
+    <div class="card"
+         *ngFor="let pokemon of pokemons; let i = index"
+         style="padding: 15px;width: 25%;">
+
+      <img (click)="onViewPokemon(i)"
+           [src]="pokemon.image"
+           class="card-img-top"
+           style="width: 100%;height: 250px">
+
+      <div class="card-body">
+        <h4 class="card-title text-center">{{ pokemon.nom }}</h4>
+
+          <ul class="card-text" style="list-style: none;">
+            <li>Point de vie : {{ pokemon.hp }}</li>
+            <li>Point de dégars : {{ pokemon.damage }}</li>
+            <li *ngFor="let type of pokemon.types">{{ type }}</li>
+          </ul>
+        <div style="display: flex;flex-direction:column;align-items: center;">
+          <button class="btn btn-danger" (click)="onDelete(pokemon)">Supprimer</button>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+<button class="btn btn-success" (click)="onNewPokemon()">Ajouter un Pokemon</button>

@@ -1,0 +1,54 @@
+<h4 class="text-center">Creation d'un nouveau pokemon</h4>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" >
+
+    <div class="form-group">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" class="form-control" formControlName="nom">
+    </div>
+
+    <div class="form-group">
+        <label for="hp">Hp :</label>
+        <input type="number" id="hp" class="form-control" formControlName="hp">
+    </div>
+
+    <div class="form-group">
+        <label for="damage">Damage :</label>
+        <input type="number" id="damage" class="form-control" formControlName="damage">
+    </div>
+
+    <div class="form-group">
+        <label for="types">Types :</label>
+
+        <div *ngFor="let type of types" >
+            <span>{{ type }}</span>
+
+            <input style="display: inline-block;margin-left: 5px;"
+                   type="checkbox"
+                   class="form-check"
+                   [name]="type"
+                   [value]="type"
+                   (change)="onCheck($event)">
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label for="image">Image :</label>
+        <input type="file"
+               id="image"
+               class="form-control"
+               formControlName="image"
+               accept="image/*"
+               (change)="detectFiles($event)">
+    </div>
+
+    <div class="alert alert-success" *ngIf="fileUploaded">Fichier chargé</div>
+
+    <div class="form-group">
+        <button type="submit"
+                class="btn btn-primary"
+                [disabled]="form.invalid || fileIsUploading">Valider</button>
+    </div>
+
+</form>
